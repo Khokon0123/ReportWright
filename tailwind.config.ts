@@ -11,6 +11,13 @@ const config: Config = {
       colors: {
         background: "var(--background)",
         foreground: "var(--foreground)",
+        ink: "#000000",
+        paper: "#ffffff",
+        accent: {
+          DEFAULT: "#2563EB",
+          dark: "#1d4ed8",
+          light: "#3b82f6",
+        },
       },
     },
   },
