@@ -8,7 +8,6 @@ import { createClient } from "@/lib/supabase";
 import { Logo } from "@/components/Logo";
 import { Button } from "@/components/ui/Button";
 import { Input } from "@/components/ui/Input";
-import { Card } from "@/components/ui/Card";
 
 export default function LoginPage() {
   return (
@@ -45,50 +44,81 @@ function LoginForm() {
   }
 
   return (
-    <div className="flex min-h-screen flex-col items-center justify-center bg-white px-6 py-12">
-      <Link href="/" className="mb-8">
-        <Logo className="text-xl" />
-      </Link>
+    <div className="flex min-h-screen">
+      {/* Left panel */}
+      <div className="hidden lg:flex lg:w-1/2 flex-col justify-between bg-accent p-12">
+        <Link href="/">
+          <Logo className="text-xl text-white [&>span]:text-white" />
+        </Link>
+        <div>
+          <p className="text-4xl font-semibold leading-tight text-white">
+            Your client reports,<br />written for you.
+          </p>
+          <p className="mt-4 text-base text-white/65 leading-relaxed max-w-sm">
+            Connect Google Ads, pick a client, and get a branded PDF with AI-written narrative in under 60 seconds.
+          </p>
+          <div className="mt-10 flex flex-col gap-3">
+            {[
+              "Pull live campaign metrics automatically",
+              "AI writes the executive summary & narrative",
+              "Export a branded PDF ready to send",
+            ].map((item) => (
+              <div key={item} className="flex items-center gap-3">
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-white/20 text-white text-xs">✓</span>
+                <span className="text-sm text-white/80">{item}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+        <p className="text-xs text-white/35">© {new Date().getFullYear()} ByteWright LLC</p>
+      </div>
 
-      <Card className="w-full max-w-sm">
-        <h1 className="text-xl font-semibold">Log in</h1>
-        <p className="mt-1 text-sm text-black/60">
-          Welcome back to ReportWright.
-        </p>
-
-        <form onSubmit={handleSubmit} className="mt-6 flex flex-col gap-4">
-          <Input
-            id="email"
-            type="email"
-            label="Email"
-            autoComplete="email"
-            required
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="you@agency.com"
-          />
-          <Input
-            id="password"
-            type="password"
-            label="Password"
-            autoComplete="current-password"
-            required
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="••••••••"
-          />
-          <Button type="submit" loading={loading} className="mt-2 w-full">
-            Log in
-          </Button>
-        </form>
-
-        <p className="mt-6 text-center text-sm text-black/60">
-          Don&apos;t have an account?{" "}
-          <Link href="/signup" className="font-medium text-accent hover:underline">
-            Sign up
+      {/* Right panel */}
+      <div className="flex flex-1 flex-col items-center justify-center px-6 py-12 bg-white">
+        <div className="w-full max-w-sm">
+          <Link href="/" className="mb-10 block lg:hidden">
+            <Logo className="text-xl" />
           </Link>
-        </p>
-      </Card>
+
+          <h1 className="text-2xl font-semibold">Welcome back</h1>
+          <p className="mt-1.5 text-sm text-black/50">
+            Log in to your ReportWright account.
+          </p>
+
+          <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
+            <Input
+              id="email"
+              type="email"
+              label="Email"
+              autoComplete="email"
+              required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="you@agency.com"
+            />
+            <Input
+              id="password"
+              type="password"
+              label="Password"
+              autoComplete="current-password"
+              required
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="••••••••"
+            />
+            <Button type="submit" loading={loading} className="mt-2 w-full py-3">
+              Log in
+            </Button>
+          </form>
+
+          <p className="mt-6 text-center text-sm text-black/50">
+            Don&apos;t have an account?{" "}
+            <Link href="/signup" className="font-medium text-accent hover:underline">
+              Sign up free
+            </Link>
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
