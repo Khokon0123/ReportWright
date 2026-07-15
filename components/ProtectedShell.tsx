@@ -4,6 +4,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Logo } from "@/components/Logo";
 import { SignOutButton } from "@/components/SignOutButton";
+import { HelpChat } from "@/components/HelpChat";
 
 function NavLink({ href, children }: { href: string; children: React.ReactNode }) {
   const pathname = usePathname();
@@ -35,6 +36,7 @@ export function ProtectedShell({ children }: { children: React.ReactNode }) {
         </nav>
       </header>
       <main className="flex-1 bg-black/[0.018] px-6 py-10 sm:px-10">{children}</main>
+      <HelpChat />
     </div>
   );
 }
